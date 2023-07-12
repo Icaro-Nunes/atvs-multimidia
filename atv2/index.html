@@ -22,7 +22,32 @@
 
             // Adicione uma ação para ser executada a cada compasso
             transport.scheduleRepeat(() => {
-                
+                // Defina uma variável para o tom base
+                const baseNote = 'D4';
+
+                // Crie um oscilador e defina o tom base
+                const oscillator = new Tone.Oscillator(baseNote, 'sine').toDestination();
+
+                // Inicie o oscilador
+                oscillator.start();
+
+
+                let notes = [
+                "D4", "A4", "D4", "D4", "A4", "D4", "E4", "F4", "E4", "F4", "E4", "C4", "A4", "A4", "D4", "F4", "G4", "A4", "A4", "D4", "F4", "G4", "E4", "D4", "A4", "D4", "D4", "A4", "D4", "E4", "F4", "E4", "F4", "E4", "C4", "A4", "A4", "D4", "F4", "G4", "A4", "A4", "D4", "D4", "A4", "D4", "D4", "A4", "D4", "E4", "F4", "E4", "F4", "E4", "C4", "A4", "A4", "D4", "F4", "G4", "A4", "A4", "D4", "F4", "G4", "E4", "D4", "A4", "D4", "D4", "A4", "D4", "E4", "F4", "E4", "F4", "E4", "C4", "A4", "A4", "D4", "F4", "G4", "A4", "A4", "D4" 
+                ];
+
+                // // Defina uma sequência de notas
+                // const notes = ["A4","B4","D5","B4","F#5","F#5",null,"F#5","F#5",null,"E5","E5","E5",
+                //                             "E5",null,null,"A4","B4","D5","B4","E5","E5",null,"E5","E5",null,"D5",
+                //                             "D5","D5","C5","B4","B4",null,null];
+
+                // Crie um loop para tocar as notas repetidamente
+                let index = 0;
+
+                transport.scheduleRepeat(() => {
+                    oscillator.frequency.value = notes[index];
+                    index = (index + 1) % notes.length;
+                }, '16n');
             }, '16n');
             // Altere '16n' para ajustar o tempo entre cada compasso (ex: '8n' para semicolcheias)
 
