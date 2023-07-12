@@ -11,7 +11,24 @@
 
 
     <script>
-    // Código Tone.js será inserido aqui
+        // Crie uma instância de Tone.js Transport
+        const transport = Tone.Transport;
+
+        // Defina a função que será executada quando o botão for clicado
+        document.getElementById('start-button').addEventListener('click', () => {
+
+            // Inicie o transporte
+            transport.start();
+
+            // Adicione uma ação para ser executada a cada compasso
+            transport.scheduleRepeat(() => {
+                
+            }, '16n');
+            // Altere '16n' para ajustar o tempo entre cada compasso (ex: '8n' para semicolcheias)
+
+            // Exiba uma mensagem no elemento 'output'
+            document.getElementById('output').innerText = 'Composição iniciada. Para parar feche a aba do navegador.';
+        });
     </script>
 </body>
 </html>
